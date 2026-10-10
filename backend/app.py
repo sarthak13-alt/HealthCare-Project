@@ -48,9 +48,19 @@ def ensure_etl():
     """Run ETL if data not yet loaded."""
     if not check_data_ready():
         if not os.path.exists(RAW_CSV):
+            try:
+                from generate_dataset import generate_dataset
+                generate_dataset(num_rows=2000, output_path=RAW_CSV)
+            except Exception as e:
+                print(f"[WARN] Failed to auto-generate raw CSV: {e}")
+                return False
+        try:
+            run_full_etl(RAW_CSV)
+        except Exception as e:
+            print(f"[WARN] Failed to run ETL: {e}")
             return False
-        run_full_etl()
     return True
+
 
 
 # ─── Page Routes ──────────────────────────────────────────────────────────
