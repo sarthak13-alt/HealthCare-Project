@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Healthcare DWM PBL - Home{% endblock %}
+{% block content %}
+<div class="hero">
+    <div class="hero-content">
+        <h1><i class="fas fa-heartbeat"></i> Healthcare Data Warehousing & Mining</h1>
+        <p class="hero-subtitle">A complete PBL project for analyzing 150,000+ patient records using ETL, Machine Learning, and Interactive Dashboards</p>
+        <div class="hero-actions">
+            <a href="/dashboard" class="btn btn-primary btn-lg"><i class="fas fa-chart-line"></i> View Dashboard</a>
+            <a href="/prediction" class="btn btn-outline btn-lg"><i class="fas fa-stethoscope"></i> Try Prediction</a>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="stat-card">
+            <div class="stat-number">150K+</div>
+            <div class="stat-label">Patient Records</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">14</div>
+            <div class="stat-label">Data Features</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">9</div>
+            <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">ML Models</div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section">
+    <h2><i class="fas fa-layer-group"></i> Project Modules</h2>
+    <div class="features-grid">
+        <a href="/dashboard" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+            <h3>Dashboard</h3>
+            <p>Interactive charts and visualizations exploring patient data, department distributions, vitals, and risk analysis</p>
+        </a>
+        <a href="/dataset" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-table"></i></div>
+            <h3>Dataset Explorer</h3>
+            <p>Browse, search, and filter all 150,000+ patient records with pagination and real-time queries</p>
+        </a>
+        <a href="/preprocessing" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-broom"></i></div>
+            <h3>Data Preprocessing</h3>
+            <p>ETL pipeline: extract, clean, transform, and load data with detailed quality reports</p>
+        </a>
+        <a href="/prediction" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-stethoscope"></i></div>
+            <h3>ML Prediction</h3>
+            <p>Predict symptom severity using trained Random Forest, Gradient Boosting, and Logistic Regression models</p>
+        </a>
+        <a href="/models" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+            <h3>Model Performance</h3>
+            <p>Compare model accuracy, view confusion matrices, feature importance, and classification reports</p>
+        </a>
+        <a href="/preprocessing" class="feature-card">
+            <div class="feature-icon"><i class="fas fa-database"></i></div>
+            <h3>Data Warehouse</h3>
+            <p>SQLite database with indexed tables, optimized queries, and structured healthcare data</p>
+        </a>
+    </div>
+</div>
+
+<div class="tech-stack">
+    <h2><i class="fas fa-tools"></i> Technology Stack</h2>
+    <div class="tech-grid">
+        <div class="tech-item"><i class="fab fa-python"></i> Python 3</div>
+        <div class="tech-item"><i class="fas fa-flask"></i> Flask</div>
+        <div class="tech-item"><i class="fas fa-database"></i> SQLite</div>
+        <div class="tech-item"><i class="fas fa-chart-bar"></i> Chart.js</div>
+        <div class="tech-item"><i class="fas fa-brain"></i> scikit-learn</div>
+        <div class="tech-item"><i class="fas fa-file-csv"></i> Pandas</div>
+        <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="tech-item"><i class="fab fa-css3"></i> CSS3</div>
+    </div>
+</div>
+{% endblock %}

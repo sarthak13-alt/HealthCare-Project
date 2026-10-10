@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data & Database (generated automatically by run.bat / generate_dataset.py)
+backend/data/raw/*.csv
+backend/data/processed/*.csv
+backend/database/*.db
+backend/models/*.joblib
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}ML Models - Healthcare DWM PBL{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-brain"></i> Machine Learning Models</h1>
+    <p>Train, compare, and evaluate classification models for symptom severity prediction</p>
+</div>
+
+<div class="model-status-banner" id="modelStatus">
+    <i class="fas fa-spinner fa-spin"></i> Checking model status...
+</div>
+
+<div class="train-section">
+    <button class="btn btn-primary btn-lg" id="trainBtn" onclick="trainModels()">
+        <i class="fas fa-play"></i> Train All Models
+    </button>
+    <p class="train-hint">Trains Random Forest, Gradient Boosting, and Logistic Regression on 80% of data, validates on 20%</p>
+</div>
+
+<div class="models-results" id="modelsResults" style="display:none;">
+    <div class="best-model-banner" id="bestModelBanner"></div>
+
+    <div class="models-comparison">
+        <h3><i class="fas fa-chart-bar"></i> Model Comparison</h3>
+        <div class="table-container">
+            <table class="data-table" id="modelTable">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy</th>
+                        <th>Precision</th>
+                        <th>Recall</th>
+                        <th>F1 Score</th>
+                        <th>CV Mean</th>
+                        <th>CV Std</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="charts-grid models-charts">
+        <div class="chart-card">
+            <h3><i class="fas fa-balance-scale"></i> Accuracy Comparison</h3>
+            <div class="chart-container"><canvas id="accuracyChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+            <h3><i class="fas fa-star"></i> F1 Score Comparison</h3>
+            <div class="chart-container"><canvas id="f1Chart"></canvas></div>
+        </div>
+        <div class="chart-card wide">
+            <h3><i class="fas fa-th"></i> Confusion Matrix (Best Model)</h3>
+            <div class="chart-container"><canvas id="confusionChart"></canvas></div>
+        </div>
+        <div class="chart-card wide">
+            <h3><i class="fas fa-sort-amount-down"></i> Feature Importance</h3>
+            <div class="chart-container"><canvas id="importanceChart"></canvas></div>
+        </div>
+    </div>
+
+    <div class="classification-report" id="classificationReport">
+        <h3><i class="fas fa-file-alt"></i> Classification Report (Best Model)</h3>
+        <pre id="reportContent"></pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% endblock %}

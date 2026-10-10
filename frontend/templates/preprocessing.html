@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Data Preprocessing - Healthcare DWM PBL{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-broom"></i> Data Preprocessing Pipeline</h1>
+    <p>ETL: Extract, Transform, Load — Clean and prepare data for analysis</p>
+</div>
+
+<div class="etl-status-bar" id="etlStatus">
+    <div class="status-indicator loading">
+        <i class="fas fa-spinner fa-spin"></i> Checking data status...
+    </div>
+</div>
+
+<div class="upload-section">
+    <h3><i class="fas fa-cloud-upload-alt"></i> Upload Dataset</h3>
+    <p>Upload your own CSV file to replace the current dataset</p>
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+        <i class="fas fa-file-csv"></i>
+        <p>Click to browse or drag & drop your CSV file here</p>
+        <span class="upload-hint">Expected columns: patient_id, age, gender, symptoms, temperature, duration_days, bp_systolic, bp_diastolic, heart_rate, oxygen_saturation, pain_level, symptom_severity, chronic_condition, department</span>
+        <input type="file" id="fileInput" accept=".csv" style="display:none" onchange="uploadFile(this)">
+    </div>
+    <div class="upload-progress" id="uploadProgress" style="display:none;">
+        <div class="progress-bar">
+            <div class="progress-fill" id="uploadProgressFill"></div>
+        </div>
+        <span id="uploadStatus">Uploading...</span>
+    </div>
+</div>
+
+<div class="preprocessing-grid">
+    <div class="pipeline-visual">
+        <h3><i class="fas fa-project-diagram"></i> ETL Pipeline</h3>
+        <div class="pipeline-steps">
+            <div class="pipeline-step" id="step-extract">
+                <div class="step-icon"><i class="fas fa-file-import"></i></div>
+                <div class="step-info">
+                    <h4>1. Extract</h4>
+                    <p>Load raw CSV from data/raw/</p>
+                    <span class="step-status" id="extract-status">Pending</span>
+                </div>
+            </div>
+            <div class="pipeline-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="pipeline-step" id="step-transform">
+                <div class="step-icon"><i class="fas fa-magic"></i></div>
+                <div class="step-info">
+                    <h4>2. Transform</h4>
+                    <p>Clean, impute, remove outliers</p>
+                    <span class="step-status" id="transform-status">Pending</span>
+                </div>
+            </div>
+            <div class="pipeline-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="pipeline-step" id="step-load">
+                <div class="step-icon"><i class="fas fa-database"></i></div>
+                <div class="step-info">
+                    <h4>3. Load</h4>
+                    <p>Store in SQLite + processed CSV</p>
+                    <span class="step-status" id="load-status">Pending</span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg" id="runEtlBtn" onclick="runETL()">
+            <i class="fas fa-play"></i> Run ETL Pipeline
+        </button>
+    </div>
+
+    <div class="preprocessing-results" id="preprocessingResults" style="display:none;">
+        <h3><i class="fas fa-chart-bar"></i> Data Quality Report</h3>
+
+        <div class="quality-cards">
+            <div class="quality-card">
+                <div class="quality-label">Raw Rows</div>
+                <div class="quality-value" id="rawRows">-</div>
+            </div>
+            <div class="quality-card">
+                <div class="quality-label">Clean Rows</div>
+                <div class="quality-value" id="cleanRows">-</div>
+            </div>
+            <div class="quality-card">
+                <div class="quality-label">Duplicates Removed</div>
+                <div class="quality-value" id="dupRemoved">-</div>
+            </div>
+            <div class="quality-card">
+                <div class="quality-label">Missing Filled</div>
+                <div class="quality-value" id="missingFilled">-</div>
+            </div>
+        </div>
+
+        <h4><i class="fas fa-list-check"></i> Transformation Steps</h4>
+        <div class="transform-steps" id="transformSteps"></div>
+
+        <h4><i class="fas fa-columns"></i> Raw Data Profile</h4>
+        <div class="profile-table-wrapper">
+            <table class="profile-table" id="profileTable">
+                <thead>
+                    <tr><th>Column</th><th>Type</th><th>Missing</th><th>Missing %</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/preprocessing.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Healthcare DWM PBL{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-heartbeat"></i>
+            <span>HealthCare DWM</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="{{ 'active' if request.path == '/' }}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="/dashboard" class="{{ 'active' if request.path == '/dashboard' }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="/dataset" class="{{ 'active' if request.path == '/dataset' }}"><i class="fas fa-database"></i> Dataset</a></li>
+            <li><a href="/preprocessing" class="{{ 'active' if request.path == '/preprocessing' }}"><i class="fas fa-broom"></i> Preprocessing</a></li>
+            <li><a href="/prediction" class="{{ 'active' if request.path == '/prediction' }}"><i class="fas fa-stethoscope"></i> Prediction</a></li>
+            <li><a href="/models" class="{{ 'active' if request.path == '/models' }}"><i class="fas fa-brain"></i> Models</a></li>
+        </ul>
+        <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Healthcare Data Warehousing & Mining PBL &copy; 2024 | Built with Flask, SQLite & scikit-learn</p>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
